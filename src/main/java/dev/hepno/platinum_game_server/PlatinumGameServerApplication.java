@@ -1,7 +1,9 @@
 package dev.hepno.platinum_game_server;
 
+import dev.hepno.platinum_game_server.config.OAuth2LoginSuccessHandler;
 import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.PlayerRepository;
+import dev.hepno.platinum_game_server.service.PlayerService;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,9 +19,11 @@ import java.util.UUID;
 @RestController
 public class PlatinumGameServerApplication implements CommandLineRunner {
 
+	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
 	@Getter
 	@Autowired
-	private PlayerRepository playerRepository;
+	private PlayerService playerService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlatinumGameServerApplication.class, args);
@@ -27,5 +31,6 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String[] args) throws Exception {
+		oAuth2LoginSuccessHandler = new OAuth2LoginSuccessHandler(this);
 	}
 }

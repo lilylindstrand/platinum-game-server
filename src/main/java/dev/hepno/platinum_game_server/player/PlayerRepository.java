@@ -7,5 +7,6 @@ import java.util.UUID;
 public interface PlayerRepository extends MongoRepository<Player, String> {
 
     public Player findById(int id);
+    public Player findByDiscordId(String discordId);
 
 }
