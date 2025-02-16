@@ -24,7 +24,7 @@ public class PlayerService {
             player = new Player();
             player.setDiscordId(principal.getAttribute("id"));
             player.setUsername(principal.getAttribute("username"));
-            player.setEmailAddress("test@test.test");
+            player.setEmailAddress(principal.getAttribute("email"));
             player.setAccountCreationDate(Date.from(Instant.now()));
             player.setGamePlayer(new GamePlayer());
             playerRepository.save(player);

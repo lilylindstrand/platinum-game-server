@@ -20,9 +20,12 @@ public class WebController {
     public PlatinumGameServerApplication main;
 
     @GetMapping(path = "/players/{id}")
-    public Player getPlayer(@PathVariable int id) {
-        return main.getPlayerService().getPlayerRepository().findById(id);
+    public String getPlayer(@PathVariable int id, Model model) {
+        Player player = main.getPlayerService().getPlayerRepository().findById(id);
+        model.addAttribute("player", player);
+        return "player-details";
     }
+
 
     @GetMapping("/")
     public String home() {
@@ -35,6 +38,7 @@ public class WebController {
         String pfp = "https://cdn.discordapp.com/avatars/" + principal.getAttribute("id") + "/" + principal.getAttribute("avatar");
         model.addAttribute("username", username);
         model.addAttribute("pfp", pfp);
+        model.addAttribute("email", principal.getAttribute("email"));
         model.addAttribute("gamePlayer", main.getPlayerUtilities().getPlayerByPrincipal(principal).getGamePlayer()).toString();
         return "welcome";
     }

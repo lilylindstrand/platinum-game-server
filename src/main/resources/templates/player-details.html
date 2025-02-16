@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Player Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+    </style>
+</head>
+<body>
+<h1>Player Details</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${player.id}"></td>
+    </tr>
+    <tr>
+        <th>Discord ID</th>
+        <td th:text="${player.discordId}"></td>
+    </tr>
+    <tr>
+        <th>Username</th>
+        <td th:text="${player.username}"></td>
+    </tr>
+    <tr>
+        <th>Email Address</th>
+        <td th:text="${player.emailAddress}"></td>
+    </tr>
+    <tr>
+        <th>Account Creation Date</th>
+        <td th:text="${#dates.format(player.accountCreationDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+    </tr>
+</table>
+
+<h2>Game Player Stats</h2>
+<table>
+    <tr>
+        <th>Coins</th>
+        <td th:text="${player.gamePlayer.coins}"></td>
+    </tr>
+    <tr>
+        <th>Level</th>
+        <td th:text="${player.gamePlayer.level}"></td>
+    </tr>
+    <tr>
+        <th>XP</th>
+        <td th:text="${player.gamePlayer.xp}"></td>
+    </tr>
+    <tr>
+        <th>Max Health</th>
+        <td th:text="${player.gamePlayer.maxHealth}"></td>
+    </tr>
+    <tr>
+        <th>Max Mana</th>
+        <td th:text="${player.gamePlayer.maxMana}"></td>
+    </tr>
+</table>
+</body>
+</html>
