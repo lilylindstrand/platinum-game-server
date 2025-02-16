@@ -21,6 +21,7 @@ public class Player {
     private String username;
     private String emailAddress;
     private Date accountCreationDate;
+    private GamePlayer gamePlayer;
 
     @Override
     public String toString() {
@@ -30,6 +31,7 @@ public class Player {
                 ", username=" + username +
                 ", email=" + emailAddress +
                 ", accountCreationDate=" + accountCreationDate +
+                ", " + gamePlayer.toString() +
                 '}';
     }
 }

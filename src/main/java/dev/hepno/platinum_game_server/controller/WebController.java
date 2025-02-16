@@ -35,6 +35,7 @@ public class WebController {
         String pfp = "https://cdn.discordapp.com/avatars/" + principal.getAttribute("id") + "/" + principal.getAttribute("avatar");
         model.addAttribute("username", username);
         model.addAttribute("pfp", pfp);
+        model.addAttribute("gamePlayer", main.getPlayerUtilities().getPlayerByPrincipal(principal).getGamePlayer()).toString();
         return "welcome";
     }
 

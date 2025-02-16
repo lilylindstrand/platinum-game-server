@@ -1,5 +1,6 @@
 package dev.hepno.platinum_game_server.service;
 
+import dev.hepno.platinum_game_server.player.GamePlayer;
 import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.PlayerRepository;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class PlayerService {
             player.setUsername(principal.getAttribute("username"));
             player.setEmailAddress("test@test.test");
             player.setAccountCreationDate(Date.from(Instant.now()));
+            player.setGamePlayer(new GamePlayer());
             playerRepository.save(player);
         }
         return player;
