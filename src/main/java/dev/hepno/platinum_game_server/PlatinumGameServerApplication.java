@@ -4,6 +4,7 @@ import dev.hepno.platinum_game_server.config.OAuth2LoginSuccessHandler;
 import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.PlayerRepository;
 import dev.hepno.platinum_game_server.service.PlayerService;
+import dev.hepno.platinum_game_server.util.PlayerUtilities;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,13 +16,14 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
 
+@Getter
 @SpringBootApplication
 @RestController
 public class PlatinumGameServerApplication implements CommandLineRunner {
 
 	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+	private PlayerUtilities playerUtilities;
 
-	@Getter
 	@Autowired
 	private PlayerService playerService;
 
@@ -32,5 +34,6 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 	@Override
 	public void run(String[] args) throws Exception {
 		oAuth2LoginSuccessHandler = new OAuth2LoginSuccessHandler(this);
+		playerUtilities = new PlayerUtilities(this);
 	}
 }

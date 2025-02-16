@@ -5,6 +5,8 @@ import dev.hepno.platinum_game_server.player.Player;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @AllArgsConstructor
-@RestController
+@Controller
 public class WebController {
 
     public PlatinumGameServerApplication main;
@@ -27,9 +29,13 @@ public class WebController {
         return "home";
     }
 
-    @GetMapping("/test")
-    public String test(@AuthenticationPrincipal OAuth2User principal) {
-        return "Welcome, " + main.getPlayerService().getPlayerRepository().findByDiscordId(principal.getAttribute("id")).getUsername();
+    @GetMapping("/welcome")
+    public String welcome(@AuthenticationPrincipal OAuth2User principal, Model model) {
+        String username = main.getPlayerUtilities().getPlayerByPrincipal(principal).getUsername();
+        String pfp = "https://cdn.discordapp.com/avatars/" + principal.getAttribute("id") + "/" + principal.getAttribute("avatar");
+        model.addAttribute("username", username);
+        model.addAttribute("pfp", pfp);
+        return "welcome";
     }
 
 }
