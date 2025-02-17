@@ -27,8 +27,10 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 	@Autowired
 	private PlayerService playerService;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(PlatinumGameServerApplication.class, args);
+
+		new Protocol().run();
 	}
 
 	@Override
