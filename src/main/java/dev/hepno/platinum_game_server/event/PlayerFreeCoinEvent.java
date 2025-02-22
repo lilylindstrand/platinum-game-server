@@ -1,7 +1,6 @@
 package dev.hepno.platinum_game_server.event;
 
 import dev.hepno.platinum_api.packet.PlayerFreeCoinPacket;
-import lombok.AccessLevel;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 

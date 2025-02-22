@@ -18,8 +18,9 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 
 	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 	private PlayerUtilities playerUtilities;
-	private UdpServer udpServer;
 
+	@Autowired
+	private UdpServer udpServer;
 	@Autowired
 	private PlayerService playerService;
 
@@ -32,8 +33,6 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 		oAuth2LoginSuccessHandler = new OAuth2LoginSuccessHandler(this);
 
 		playerUtilities = new PlayerUtilities(this);
-
-		udpServer = new UdpServer();
 		udpServer.run();
 	}
 }
