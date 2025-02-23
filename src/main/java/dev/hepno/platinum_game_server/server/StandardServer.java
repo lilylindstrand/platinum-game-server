@@ -1,5 +1,6 @@
 package dev.hepno.platinum_game_server.server;
 
+
 import dev.hepno.platinum_game_server.player.OnlinePlayer;
 import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.StandardPlayer;
@@ -53,7 +54,7 @@ public class StandardServer implements Server {
     }
 
     @Override
-    public OnlinePlayer getOnlinePlayer(String sessionId) {
+    public Player getPlayerBySession(String sessionId) {
         for (Player player : getOnlinePlayers()) {
             if (player.getSessionId().equals(sessionId)) {
                 return player;
@@ -74,6 +75,10 @@ public class StandardServer implements Server {
 
     @Override
     public void connectPlayer(String sessionId, User user) {
+        if (getPlayerBySession(sessionId) != null) {
+            disconnectPlayer(user);
+            return;
+        }
         Player player = new StandardPlayer();
         player.setSessionId(sessionId);
         player.setUser(user);

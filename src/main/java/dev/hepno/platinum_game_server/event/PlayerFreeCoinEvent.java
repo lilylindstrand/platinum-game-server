@@ -1,6 +1,9 @@
 package dev.hepno.platinum_game_server.event;
 
 import dev.hepno.platinum_api.packet.PlayerFreeCoinPacket;
+import dev.hepno.platinum_game_server.Core;
+import dev.hepno.platinum_game_server.player.OnlinePlayer;
+import dev.hepno.platinum_game_server.player.Player;
 import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
@@ -9,15 +12,14 @@ public class PlayerFreeCoinEvent extends ApplicationEvent {
 
     private final PlayerFreeCoinPacket playerFreeCoinPacket;
 
-    //TODO: Make events contain far more info such as User objects, OnlinePlayer objects, etc. will be easier once sessions & auth are properly implemented
-    private final String sessionId;
+    private final Player player;
     private final float x;
     private final float y;
 
     public PlayerFreeCoinEvent(Object source, PlayerFreeCoinPacket playerFreeCoinPacket) {
         super(source);
         this.playerFreeCoinPacket = playerFreeCoinPacket;
-        sessionId = playerFreeCoinPacket.getSessionId();
+        player = Core.getServer().getPlayerBySession(playerFreeCoinPacket.getSessionId());
         x = playerFreeCoinPacket.getX();
         y = playerFreeCoinPacket.getY();
     }

@@ -1,6 +1,7 @@
 package dev.hepno.platinum_game_server.service;
 
 import dev.hepno.platinum_game_server.player.GamePlayer;
+import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.User;
 import dev.hepno.platinum_game_server.player.UserRepository;
 import lombok.Getter;
@@ -17,6 +18,14 @@ public class UserService {
     @Getter
     @Autowired
     public UserRepository userRepository;
+
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
+
+    public void updateUser(Player player) {
+        userRepository.save(player.getUser());
+    }
 
     public User findOrCreateUser(DefaultOAuth2User principal) {
         User user = userRepository.findByDiscordId(principal.getAttribute("id"));

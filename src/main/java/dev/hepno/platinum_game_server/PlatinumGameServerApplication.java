@@ -2,6 +2,7 @@ package dev.hepno.platinum_game_server;
 
 import dev.hepno.platinum_game_server.config.OAuth2LoginSuccessHandler;
 import dev.hepno.platinum_game_server.server.Server;
+import dev.hepno.platinum_game_server.server.StandardServer;
 import dev.hepno.platinum_game_server.server.UdpServer;
 import dev.hepno.platinum_game_server.service.UserService;
 import dev.hepno.platinum_game_server.util.PlayerUtilities;
@@ -20,6 +21,7 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 
 	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
 	private PlayerUtilities playerUtilities;
+	private StandardServer server;
 
 	@Autowired
 	private UdpServer udpServer;
@@ -32,6 +34,9 @@ public class PlatinumGameServerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String[] args) throws Exception {
+		server = new StandardServer();
+		Core.setServer(server);
+
 		oAuth2LoginSuccessHandler = new OAuth2LoginSuccessHandler(this);
 
 		playerUtilities = new PlayerUtilities(this);

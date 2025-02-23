@@ -1,5 +1,6 @@
 package dev.hepno.platinum_game_server.server;
 
+
 import dev.hepno.platinum_game_server.player.OnlinePlayer;
 import dev.hepno.platinum_game_server.player.Player;
 import dev.hepno.platinum_game_server.player.User;
@@ -45,11 +46,11 @@ public interface Server {
     public Collection<? extends Player> getOnlinePlayers();
 
     /**
-     * Gets the {@link OnlinePlayer} from a sessionId
+     * Gets the {@link Player} from a sessionId
      * @param sessionId the sessionId of the player you want to retrieve
-     * @return the OnlinePlayer if one was found, null otherwise
+     * @return the player if they exist & are online, null otherwise
      */
-    public OnlinePlayer getOnlinePlayer(String sessionId);
+    public Player getPlayerBySession(String sessionId);
 
     /**
      * Gets the {@link Player} whose exact name matches the parameter

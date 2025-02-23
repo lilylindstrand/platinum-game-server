@@ -1,8 +1,8 @@
 package dev.hepno.platinum_game_server.server;
 
-import dev.hepno.platinum_api.packet.Packet;
-import dev.hepno.platinum_api.packet.PacketType;
-import dev.hepno.platinum_api.packet.PlayerFreeCoinPacket;
+import dev.hepno.platinum_api.packet.*;
+import dev.hepno.platinum_game_server.event.PlayerConnectEvent;
+import dev.hepno.platinum_game_server.event.PlayerDisconnectEvent;
 import dev.hepno.platinum_game_server.event.PlayerFreeCoinEvent;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
@@ -30,10 +30,14 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
         Packet packet = packetType.createPacket();
         packet.decode(content);
 
-        if (packet instanceof PlayerFreeCoinPacket) {
-            PlayerFreeCoinPacket playerFreeCoinPacket = (PlayerFreeCoinPacket) packet;
-            System.out.println(playerFreeCoinPacket.getSessionId());
+        if (packet instanceof PlayerFreeCoinPacket playerFreeCoinPacket) {
             eventPublisher.publishEvent(new PlayerFreeCoinEvent(this, playerFreeCoinPacket));
+        }
+        else if (packet instanceof PlayerConnectPacket playerConnectPacket) {
+            eventPublisher.publishEvent(new PlayerConnectEvent(this, playerConnectPacket));
+        }
+        else if (packet instanceof PlayerDisconnectPacket playerDisconnectPacket) {
+            eventPublisher.publishEvent(new PlayerDisconnectEvent(this, playerDisconnectPacket));
         }
     }
 
