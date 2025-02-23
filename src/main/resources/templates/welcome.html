@@ -2,12 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Redirecting...</title>
+    <meta http-equiv="refresh" content="0;url=https://localhost:5757/">
 </head>
 <body>
-<h1>Welcome, <span th:text="${username}"></span>!</h1>
+<!-- <h1>Welcome, <span th:text="${username}"></span>!</h1>
 <img th:src="@{${pfp}}"/>
 <p><span th:text="${email}"></span></p>
 <p>Stats: <span th:text="${gamePlayer}"></span></p>
+<p th:text="${sessionId}"></p> -->
+<script>
+    const sessionId = document.cookie.replace(/(?:(?:^|.*;\s*)SESSION\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+    console.log("Session ID: ", sessionId);
+</script>
 </body>
 </html>

@@ -2,6 +2,8 @@ package dev.hepno.platinum_game_server.controller;
 
 import dev.hepno.platinum_game_server.PlatinumGameServerApplication;
 import dev.hepno.platinum_game_server.player.Player;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -33,14 +35,18 @@ public class WebController {
     }
 
     @GetMapping("/welcome")
-    public String welcome(@AuthenticationPrincipal OAuth2User principal, Model model) {
+    public String welcome(@AuthenticationPrincipal OAuth2User principal, Model model, HttpServletRequest request) {
         String username = main.getPlayerUtilities().getPlayerByPrincipal(principal).getUsername();
         String pfp = "https://cdn.discordapp.com/avatars/" + principal.getAttribute("id") + "/" + principal.getAttribute("avatar");
         model.addAttribute("username", username);
         model.addAttribute("pfp", pfp);
         model.addAttribute("email", principal.getAttribute("email"));
         model.addAttribute("gamePlayer", main.getPlayerUtilities().getPlayerByPrincipal(principal).getGamePlayer()).toString();
-        return "welcome";
+
+        String sessionId = request.getSession().getId();
+        model.addAttribute("sessionId", sessionId);
+
+        return "redirect:http://localhost:5959/" + sessionId;
     }
 
 }
