@@ -18,7 +18,7 @@ public class UserService {
     @Autowired
     public UserRepository userRepository;
 
-    public User findOrCreatePlayer(DefaultOAuth2User principal) {
+    public User findOrCreateUser(DefaultOAuth2User principal) {
         User user = userRepository.findByDiscordId(principal.getAttribute("id"));
         if (user == null) {
             user = new User();

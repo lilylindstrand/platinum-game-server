@@ -25,7 +25,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();
 
-        Core.connectPlayer(request.getSession().getId(), main.getUserService().findOrCreatePlayer(principal));
+        Core.connectPlayer(request.getSession().getId(), main.getUserService().findOrCreateUser(principal));
 
         this.setDefaultTargetUrl("/welcome");
         this.setAlwaysUseDefaultTargetUrl(true);
