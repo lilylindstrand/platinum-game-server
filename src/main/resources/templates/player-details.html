@@ -31,23 +31,23 @@
 <table>
     <tr>
         <th>ID</th>
-        <td th:text="${player.id}"></td>
+        <td th:text="${user.id}"></td>
     </tr>
     <tr>
         <th>Discord ID</th>
-        <td th:text="${player.discordId}"></td>
+        <td th:text="${user.discordId}"></td>
     </tr>
     <tr>
         <th>Username</th>
-        <td th:text="${player.username}"></td>
+        <td th:text="${user.username}"></td>
     </tr>
     <tr>
         <th>Email Address</th>
-        <td th:text="${player.emailAddress}"></td>
+        <td th:text="${user.emailAddress}"></td>
     </tr>
     <tr>
         <th>Account Creation Date</th>
-        <td th:text="${#dates.format(player.accountCreationDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
+        <td th:text="${#dates.format(user.accountCreationDate, 'dd-MM-yyyy HH:mm:ss')}"></td>
     </tr>
 </table>
 
@@ -55,23 +55,23 @@
 <table>
     <tr>
         <th>Coins</th>
-        <td th:text="${player.gamePlayer.coins}"></td>
+        <td th:text="${user.gamePlayer.coins}"></td>
     </tr>
     <tr>
         <th>Level</th>
-        <td th:text="${player.gamePlayer.level}"></td>
+        <td th:text="${user.gamePlayer.level}"></td>
     </tr>
     <tr>
         <th>XP</th>
-        <td th:text="${player.gamePlayer.xp}"></td>
+        <td th:text="${user.gamePlayer.xp}"></td>
     </tr>
     <tr>
         <th>Max Health</th>
-        <td th:text="${player.gamePlayer.maxHealth}"></td>
+        <td th:text="${user.gamePlayer.maxHealth}"></td>
     </tr>
     <tr>
         <th>Max Mana</th>
-        <td th:text="${player.gamePlayer.maxMana}"></td>
+        <td th:text="${user.gamePlayer.maxMana}"></td>
     </tr>
 </table>
 </body>

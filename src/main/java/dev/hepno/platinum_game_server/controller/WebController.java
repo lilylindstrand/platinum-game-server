@@ -1,9 +1,8 @@
 package dev.hepno.platinum_game_server.controller;
 
 import dev.hepno.platinum_game_server.PlatinumGameServerApplication;
-import dev.hepno.platinum_game_server.player.Player;
+import dev.hepno.platinum_game_server.player.User;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -11,9 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 @AllArgsConstructor
 @Controller
@@ -23,9 +19,9 @@ public class WebController {
 
     @GetMapping(path = "/players/{id}")
     public String getPlayer(@PathVariable int id, Model model) {
-        Player player = main.getPlayerService().getPlayerRepository().findById(id);
-        model.addAttribute("player", player);
-        return "player-details";
+        User user = main.getUserService().getUserRepository().findById(id);
+        model.addAttribute("user", user);
+        return "user-details";
     }
 
 

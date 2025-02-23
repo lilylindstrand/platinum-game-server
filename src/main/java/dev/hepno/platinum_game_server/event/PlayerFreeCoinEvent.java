@@ -9,7 +9,7 @@ public class PlayerFreeCoinEvent extends ApplicationEvent {
 
     private final PlayerFreeCoinPacket playerFreeCoinPacket;
 
-    //TODO: Make events contain far more info such as Player objects, OnlinePlayer objects, etc. will be easier once sessions & auth are properly implemented
+    //TODO: Make events contain far more info such as User objects, OnlinePlayer objects, etc. will be easier once sessions & auth are properly implemented
     private final String sessionId;
     private final float x;
     private final float y;
