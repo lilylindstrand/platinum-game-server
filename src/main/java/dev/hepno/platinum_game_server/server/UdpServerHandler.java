@@ -32,7 +32,7 @@ public class UdpServerHandler extends SimpleChannelInboundHandler<DatagramPacket
 
         if (packet instanceof PlayerFreeCoinPacket) {
             PlayerFreeCoinPacket playerFreeCoinPacket = (PlayerFreeCoinPacket) packet;
-            System.out.println("Recieved PlayerFreeCoinPacket: " + playerFreeCoinPacket);
+            System.out.println(playerFreeCoinPacket.getSessionId());
             eventPublisher.publishEvent(new PlayerFreeCoinEvent(this, playerFreeCoinPacket));
         }
     }
