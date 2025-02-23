@@ -1,5 +1,6 @@
 package dev.hepno.platinum_game_server.config;
 
+import dev.hepno.platinum_game_server.Core;
 import dev.hepno.platinum_game_server.PlatinumGameServerApplication;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,8 +25,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws ServletException, IOException {
         DefaultOAuth2User principal = (DefaultOAuth2User) authentication.getPrincipal();
 
-        main.getUserService().findOrCreatePlayer(principal);
-
+        Core.connectPlayer(request.getSession().getId(), main.getUserService().findOrCreatePlayer(principal));
 
         this.setDefaultTargetUrl("/welcome");
         this.setAlwaysUseDefaultTargetUrl(true);
